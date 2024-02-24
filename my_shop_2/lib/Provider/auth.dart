@@ -36,7 +36,7 @@ class Auth with ChangeNotifier {
 
   Future<void> signup(String email, String password) async {
     final url = Uri.parse(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCIf1UJ9U7juiUaz7rjgfvnGJlVigoV7W0');
+        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key={YOUR_API_KEY_HERE}');
     try {
       final response = await http.post(url,
           body: json.encode({
@@ -73,7 +73,7 @@ class Auth with ChangeNotifier {
 
   Future<void> login(String email, String password) async {
     final url = Uri.parse(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCIf1UJ9U7juiUaz7rjgfvnGJlVigoV7W0');
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={YOUR_API_KEY_HERE}');
 
     try {
       final response = await http.post(url,
@@ -111,26 +111,26 @@ class Auth with ChangeNotifier {
   }
 
   Future<bool> tryAutoLogin() async {
-  final prefs = await SharedPreferences.getInstance();
-  if(!prefs.containsKey('userData')){
-    return false;
-  }
-  final extractedData = json.decode(prefs.getString('userData')!) as Map<String, dynamic>;
-  final expiryDate = DateTime.parse(extractedData['expiryDate']);
+    final prefs = await SharedPreferences.getInstance();
+    if (!prefs.containsKey('userData')) {
+      return false;
+    }
+    final extractedData =
+        json.decode(prefs.getString('userData')!) as Map<String, dynamic>;
+    final expiryDate = DateTime.parse(extractedData['expiryDate']);
 
-  if(expiryDate.isBefore(DateTime.now())){
-    return false;
+    if (expiryDate.isBefore(DateTime.now())) {
+      return false;
+    }
+    _token = extractedData['token'];
+    _userId = extractedData['userId'];
+    _expiryDate = expiryDate;
+    notifyListeners();
+    autoLogout();
+    return true;
   }
-   _token = extractedData['token'];
-  _userId = extractedData['userId'];
-  _expiryDate =expiryDate;
-  notifyListeners();
-  autoLogout();
-  return true;
 
-  }
-
-  Future<void> logout() async{
+  Future<void> logout() async {
     _userId = null;
     _token = null;
     _expiryDate = null;

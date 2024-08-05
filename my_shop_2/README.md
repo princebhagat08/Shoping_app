@@ -7,9 +7,9 @@ A new Flutter project.
 This project is a starting point for a Flutter application.
 Follow the following steps
 
-Connect your project to Firebase
-Download google-services JSON file and paste it at chatapp/android/app
-Write all the necessary keys in main.dart file. (All of those keys are given in the above google-services file)
+1. Connect your project to Firebase
+2. Download google-services JSON file and paste it at chatapp/android/app
+3. Write all the necessary keys in main.dart file. (All of those keys are given in the above google-services file)
 
 
 #SCREENSHOTS

@@ -5,12 +5,12 @@ A new Flutter project.
 ## Getting Started
 
 This project is a starting point for a Flutter application.
+Follow the following steps
 
-A few resources to get you started if this is your first Flutter project:
+Connect your project to Firebase
+Download google-services JSON file and paste it at chatapp/android/app
+Write all the necessary keys in main.dart file. (All of those keys are given in the above google-services file)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#SCREENSHOTS
+![2](https://github.com/user-attachments/assets/b0e21015-984a-4d47-82c2-4c783eabf86e)
